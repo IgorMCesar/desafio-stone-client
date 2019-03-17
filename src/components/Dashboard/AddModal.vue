@@ -96,7 +96,6 @@ export default {
   },
   data() {
     return {
-      API_URL: '',
       nome: '',
       idade: '',
       cargo: '',
@@ -122,10 +121,6 @@ export default {
       idades: Array.apply(null, {length: 103}).map(Number.call, Number)
     };
   },
-  created() {
-    if (window.location.hostname === 'localhost') this.API_URL = 'http://localhost:3000';
-    else this.API_URL = 'https://desafio-stone-api.herokuapp.com';
-  },
   methods: {
     close() {
       this.reset();
@@ -140,7 +135,7 @@ export default {
           cargo: this.cargo,
           idade: this.idade
         ,};
-        axios.put(`${this.API_URL}/funcionario/insert`, profissional)
+        axios.put(`${this.$store.getters.apiUrl}/funcionario/insert`, profissional)
         .then((resp) => {
           this.close();
         })

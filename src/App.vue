@@ -20,7 +20,6 @@
     
     <v-content>
       <DisclaimerModal />
-      <!-- <Login /> -->
       <router-view />
     </v-content>
   </v-app>
@@ -38,6 +37,12 @@ export default {
     return {
       //
     };
+  },
+  created() {
+    let API_URL = '';
+    if (window.location.hostname === 'localhost') API_URL = 'http://localhost:3000';
+    else API_URL = 'https://desafio-stone-api.herokuapp.com';
+    this.$store.dispatch('setApiUrl', API_URL);
   },
 };
 </script>

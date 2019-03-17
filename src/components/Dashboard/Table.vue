@@ -92,7 +92,6 @@ export default {
   data() {
     return {
       dialog: false,
-      API_URL: '',
       search: '',
       headers: [
         {
@@ -121,14 +120,11 @@ export default {
     };
   },
   created() {
-    if (window.location.hostname === 'localhost') this.API_URL = 'http://localhost:3000';
-    else this.API_URL = 'https://desafio-stone-api.herokuapp.com';
     this.getAll();
   },
   methods: {
     getTest() {
-      console.log(this.API_URL);
-      axios.post(`${this.API_URL}/funcionario/findById`, {id: 1})
+      axios.post(`${this.$store.getters.apiUrl}/funcionario/findById`, {id: 1})
       .then((resp) => {
         console.log(resp);
       })
@@ -137,7 +133,7 @@ export default {
       })
     },
     getAll() {
-      axios.get(`${this.API_URL}/funcionario/getAll`)
+      axios.get(`${this.$store.getters.apiUrl}/funcionario/getAll`)
       .then((resp) => {
         this.funcionarios = resp.data;
       })
@@ -152,7 +148,7 @@ export default {
     deleteItem(funcionario){
       console.log(funcionario.id);
       if(confirm(`Tem certeza que deseja remover o funcionario ${funcionario.nome}?`)) {
-        axios.delete(`${this.API_URL}/funcionario/remove`, { data: {id: funcionario.id}})
+        axios.delete(`${this.$store.getters.apiUrl}/funcionario/remove`, { data: {id: funcionario.id}})
         .then((resp) => {
           console.log(resp);
           this.getAll();
