@@ -1,4 +1,4 @@
-### Desafio Stone Client
+## Desafio Stone Client
 
 ```sh
 npm install
