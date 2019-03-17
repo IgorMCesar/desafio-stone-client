@@ -1,4 +1,5 @@
 <template>
+  <!-- Global snackbar component, keeps watching store snackbar state, if it changes se it to the values recived with a timeout of 6 sec  -->
   <v-snackbar
     v-model="snackbar"
     center
@@ -21,7 +22,7 @@
     data () {
       return {
         snackbar: '',
-        message: 'Hello, I\'m a snackbar',
+        message: '',
         color: ''
       }
     },

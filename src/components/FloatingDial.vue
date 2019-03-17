@@ -1,4 +1,5 @@
 <template>
+  <!-- FloatingDial component with github icon and dial redirecting to client and server git repos -->
   <v-speed-dial
     v-model="fab"
     bottom
@@ -48,17 +49,6 @@
     data: () => ({
       fab: false,
     }),
-
-    computed: {
-      activeFab () {
-        switch (this.tabs) {
-          case 'one': return { 'class': 'purple', icon: 'account_circle' }
-          case 'two': return { 'class': 'red', icon: 'edit' }
-          case 'three': return { 'class': 'green', icon: 'keyboard_arrow_up' }
-          default: return {}
-        }
-      }
-    },
   }
 </script>
 

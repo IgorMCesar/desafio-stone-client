@@ -1,4 +1,5 @@
 <template>
+  <!-- Disclaimer component to warn about the stone challenge  -->
   <v-dialog
     v-model="dialog"
     persistent

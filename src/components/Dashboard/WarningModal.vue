@@ -1,4 +1,5 @@
 <template>
+  <!-- A confirmation Modal for removing a funcionario -->
   <v-dialog
     v-model="warningModal.active"
     persistent
@@ -32,7 +33,7 @@
         <v-btn
           color="green darken-2"
           flat
-          @click="deleteProfissional"
+          @click="deleteFuncionario"
         >
           Remover
         </v-btn>
@@ -50,16 +51,13 @@ export default {
     warningModal: Object,
     closeWarningModal: Function,
   },
-  data() {
-    return {
-      //
-    };
-  },
   methods: {
+    // Close modal using props function on caller
     close() {
       this.closeWarningModal();
     },
-    deleteProfissional() {
+    // Deletes a funcionario with a request sent through axios to the server, depending on success it shows a snackbar with pre-defined data
+    deleteFuncionario() {
       axios.delete(`${this.$store.getters.apiUrl}/funcionario/remove`, { data: {id: this.warningModal.funcionario.id}})
         .then((resp) => {
           this.$store.dispatch('setSnackbar', {

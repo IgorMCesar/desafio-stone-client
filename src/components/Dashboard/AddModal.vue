@@ -1,4 +1,5 @@
 <template>
+  <!-- Component to add new funcionarios -->
   <v-dialog
     v-model="dialog"
     persistent
@@ -19,7 +20,7 @@
       <v-card-text>
         <v-form
           ref="form"
-          v-model="valid"
+          v-model="validForm"
           lazy-validation
         > 
           <v-container grid-list-md>
@@ -99,8 +100,8 @@ export default {
       nome: '',
       idade: '',
       cargo: '',
-      valid: true,
-      verified: false,
+      validForm: true,
+      verifiedForm: false,
       nomeRules: [
         v => !!v || 'Nome é necessário',
         v => this.regNome(v) || 'Nome só pode possuir letras',
@@ -129,7 +130,7 @@ export default {
     },
     addProfissional() {
       this.validate();
-      if(this.verified) {
+      if(this.verifiedForm) {
         const profissional = { 
           nome: this.nome, 
           cargo: this.cargo,
@@ -159,7 +160,7 @@ export default {
     validate () {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        this.verified = true;
+        this.verifiedForm = true;
       }
     },
     reset () {

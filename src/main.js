@@ -13,6 +13,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false;
 
+//Initalizing vue app inside #app id on @public/index.html
 new Vue({
   router,
   store,

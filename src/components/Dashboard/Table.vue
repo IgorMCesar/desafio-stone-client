@@ -1,4 +1,5 @@
 <template>
+  <!-- Table modal with all funcionarios of the DB -->
   <v-container>
     <AddModal
       :dialog="dialog"
@@ -126,9 +127,9 @@ export default {
         active: false,
         funcionario: '',
       },
-      FuncionarioselectedToRemove: '',
     };
   },
+  // When Table Component is created on Vue lifecycle get all funcionarios using axios request to the server
   created() {
     this.getAll();
   },

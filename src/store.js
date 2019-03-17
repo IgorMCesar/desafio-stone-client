@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
-
+// State store to access data on all components in the app
 export default new Vuex.Store({
   state: {
     apiUrl: '',
