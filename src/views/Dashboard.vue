@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Table from '../components/Dashboard/Table.vue';
 
 export default {

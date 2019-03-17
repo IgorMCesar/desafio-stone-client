@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     apiUrl: '',
     snackbar: {
+      active: false,
       message: '',
       color: '',
     }
@@ -21,11 +22,21 @@ export default new Vuex.Store({
     },
     SET_APIURL (state, payload) {
       state.apiUrl = payload;
+    },
+    RESET_SNACKBAR (state) {
+      state.snackbar = {
+        active: false,
+        message: '',
+        color: '',
+      }
     }
   },
   actions: {
     setSnackbar ({commit}, payload) {
       commit('SET_SNACKBAR', payload);
+    },
+    resetSnackbar ({commit}) {
+      commit('RESET_SNACKBAR');
     },
     setApiUrl ({commit}, payload) {
       commit('SET_APIURL', payload);

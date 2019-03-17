@@ -20,6 +20,7 @@
     
     <v-content>
       <DisclaimerModal />
+      <Snackbar />
       <router-view />
     </v-content>
   </v-app>
@@ -27,11 +28,13 @@
 
 <script>
 import DisclaimerModal from './components/DisclaimerModal';
+import Snackbar from './components/Snackbar';
 
 export default {
   name: 'App',
   components: {
-    DisclaimerModal
+    DisclaimerModal,
+    Snackbar
   },
   data() {
     return {

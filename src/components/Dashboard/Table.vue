@@ -51,7 +51,7 @@
           <td class="text-xs-right">
             {{ props.item.cargo }}
           </td>
-          <td class="justify-center layout px-0">
+          <td class="text-xs-right">
             <!-- <v-icon
               small
               class="mr-2"
@@ -61,7 +61,7 @@
             </v-icon> -->
             <v-icon
               small
-              @click="deleteItem(props.item)"
+              @click="deleteFuncionario(props.item)"
             >
               delete
             </v-icon>
@@ -111,7 +111,7 @@ export default {
         },
         {
           text: 'Remover',
-          align: 'left',
+          align: 'right',
           value: 'nome',
           sortable: false
         }
@@ -127,6 +127,7 @@ export default {
       axios.post(`${this.$store.getters.apiUrl}/funcionario/findById`, {id: 1})
       .then((resp) => {
         console.log(resp);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -145,15 +146,24 @@ export default {
       this.dialog = false;
       this.getAll();
     },
-    deleteItem(funcionario){
+    deleteFuncionario(funcionario){
       console.log(funcionario.id);
       if(confirm(`Tem certeza que deseja remover o funcionario ${funcionario.nome}?`)) {
         axios.delete(`${this.$store.getters.apiUrl}/funcionario/remove`, { data: {id: funcionario.id}})
         .then((resp) => {
-          console.log(resp);
+          this.$store.dispatch('setSnackbar', {
+            active: true,
+            message: 'Funcionario removido com sucesso!',
+            color: 'green',
+          });
           this.getAll();
         })
         .catch((err) => {
+          this.$store.dispatch('setSnackbar', {
+            active: true,
+            message: 'Houve um erro ao remover usuario!',
+            color: 'red',
+          });
           console.log(err);
         })
       }

@@ -137,9 +137,19 @@ export default {
         ,};
         axios.put(`${this.$store.getters.apiUrl}/funcionario/insert`, profissional)
         .then((resp) => {
+          this.$store.dispatch('setSnackbar', {
+            active: true,
+            message: 'Funcionario adicionado com sucesso!',
+            color: 'green',
+          });
           this.close();
         })
         .catch((err, resp) => {
+          this.$store.dispatch('setSnackbar', {
+            active: true,
+            message: 'Houve um erro, funcionario não pode ser adicionado!',
+            color: 'red',
+          });
           console.log(err);
           console.log(resp);
         })
