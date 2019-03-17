@@ -4,7 +4,7 @@
       :dialog="dialog"
       :close-modal="closeModal"
     />
-    <v-card>
+    <v-card id="table-card">
       <v-card-title>
         <v-btn
           id="floating-button"
@@ -179,5 +179,15 @@ export default {
 
 #search {
   
+}
+
+.v-datatable__actions {
+  border-radius: 20px !important;
+}
+#table-card {
+  border-radius: 20px !important;
+}
+.theme--light.v-table {
+  border-radius: 20px !important;
 }
 </style>

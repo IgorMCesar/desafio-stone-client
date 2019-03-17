@@ -4,6 +4,7 @@
     fluid
     fill-height
   >
+    <FloatingDial />
     <v-layout
       align-center
       justify-center
@@ -21,11 +22,13 @@
 
 <script>
 import Table from '../components/Dashboard/Table.vue';
+import FloatingDial from '../components/FloatingDial';
 
 export default {
   name: 'Dashboard',
   components: {
-    Table
+    Table,
+    FloatingDial
   }
 };
 </script>

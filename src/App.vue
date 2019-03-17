@@ -30,6 +30,7 @@
 import DisclaimerModal from './components/DisclaimerModal';
 import Snackbar from './components/Snackbar';
 
+
 export default {
   name: 'App',
   components: {
