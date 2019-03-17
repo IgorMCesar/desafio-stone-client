@@ -3,78 +3,78 @@
     v-model="dialog"
     persistent
     max-width="600px"
+    class="add-border"
   >
-    <v-card>
-      <v-card-title>
-        <span class="headline">Adicionar Profissional</span>
+    <v-card class="add-border">
+      <v-card-title id="card-color">
+        <v-icon
+          id="add-icon"
+          color="white"
+          large
+        >
+          person_add
+        </v-icon>
+        <span class="headline">Adicionar Funcionario</span>
       </v-card-title>
       <v-card-text>
-        <!-- <v-container grid-list-md>
-          <v-layout wrap>
-            <v-flex xs12 sm12 md12>
-              <v-text-field v-model="nome" label="Nome*" required></v-text-field>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-autocomplete
-                v-model="cargo"
-                :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                label="Cargo*"
-                unique
-                required
-              ></v-autocomplete>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-select
-                v-model="idade"
-                :items="Array.apply(null, {length: 103}).map(Number.call, Number)"
-                label="Idade*"
-                required
-              ></v-select>
-            </v-flex>
-            
-          </v-layout>
-        </v-container>
-        <small>*Indica campos que devem ser preenchidos</small> -->
         <v-form
           ref="form"
           v-model="valid"
           lazy-validation
-        >
-          <v-text-field
-            v-model="nome"
-            :rules="nomeRules"
-            label="Nome"
-            required
-          />
-
-          <v-select
-            v-model="cargo"
-            :items="cargos"
-            :rules="[v => !!v || 'É necessário escolher um cargo']"
-            label="Cargo"
-            required
-          />
-
-          <v-select
-            v-model="idade"
-            :items="idades"
-            :rules="[v => !!v || 'É necessário escolher uma idade']"
-            label="Idade"
-            required
-          />
+        > 
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex
+                xs12
+                sm12
+              >
+                <v-text-field
+                  v-model="nome"
+                  :rules="nomeRules"
+                  label="Nome"
+                  required
+                />
+              </v-flex>
+              <v-flex
+                xs12
+                sm8
+              >
+                <v-select
+                  v-model="cargo"
+                  :items="cargos"
+                  :rules="[v => !!v || 'É necessário escolher um cargo']"
+                  label="Cargo"
+                  required
+                />
+              </v-flex>
+              <v-flex
+                xs12
+                sm4
+              >
+                <v-select
+                  v-model="idade"
+                  :items="idades"
+                  :rules="[v => !!v || 'É necessário escolher uma idade']"
+                  label="Idade"
+                  required
+                />
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-form>
       </v-card-text>
+      <v-divider />
       <v-card-actions>
         <v-spacer />
         <v-btn
-          color="blue darken-1"
+          color="red darken-1"
           flat
           @click="close()"
         >
           Fechar
         </v-btn>
         <v-btn
-          color="blue darken-1"
+          color="green darken-2"
           flat
           @click="addProfissional"
         >
@@ -178,7 +178,18 @@ export default {
 </script>
 
 <style>
-#floating-button {
-  background-color: #92c83e;
+
+.add-border {
+  border-radius: 20px !important;
+}
+
+#card-color{
+  background-color: #268a18f2;
+  color: white;
+
+}
+
+#add-icon {
+  padding-right: 16px;
 }
 </style>

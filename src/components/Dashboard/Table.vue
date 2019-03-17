@@ -4,6 +4,10 @@
       :dialog="dialog"
       :close-modal="closeModal"
     />
+    <WarningModal 
+      :warning-modal="warningModal"
+      :close-warning-modal="closeWarningModal"
+    />
     <v-card id="table-card">
       <v-card-title>
         <v-btn
@@ -26,7 +30,6 @@
             offset-xs2
           >
             <v-text-field
-              id="search"
               v-model="search"
               append-icon="search"
               label="Search"
@@ -61,7 +64,7 @@
             </v-icon> -->
             <v-icon
               small
-              @click="deleteFuncionario(props.item)"
+              @click="openWarningModal(props.item)"
             >
               delete
             </v-icon>
@@ -73,7 +76,7 @@
           color="error"
           icon="warning"
         >
-          Your search for "{{ search }}" found no results.
+          Sua busca por "{{ search }}" não obeteve resultados.
         </v-alert>
       </v-data-table>
     </v-card>
@@ -83,11 +86,13 @@
 <script>
 import axios from 'axios';
 import AddModal from './AddModal';
+import WarningModal from './WarningModal';
 
 export default {
   name: 'Table',
   components: {
     AddModal,
+    WarningModal
   },
   data() {
     return {
@@ -117,6 +122,11 @@ export default {
         }
       ],
       funcionarios: [],
+      warningModal: {
+        active: false,
+        funcionario: '',
+      },
+      FuncionarioselectedToRemove: '',
     };
   },
   created() {
@@ -146,28 +156,19 @@ export default {
       this.dialog = false;
       this.getAll();
     },
-    deleteFuncionario(funcionario){
-      console.log(funcionario.id);
-      if(confirm(`Tem certeza que deseja remover o funcionario ${funcionario.nome}?`)) {
-        axios.delete(`${this.$store.getters.apiUrl}/funcionario/remove`, { data: {id: funcionario.id}})
-        .then((resp) => {
-          this.$store.dispatch('setSnackbar', {
-            active: true,
-            message: 'Funcionario removido com sucesso!',
-            color: 'green',
-          });
-          this.getAll();
-        })
-        .catch((err) => {
-          this.$store.dispatch('setSnackbar', {
-            active: true,
-            message: 'Houve um erro ao remover usuario!',
-            color: 'red',
-          });
-          console.log(err);
-        })
+    openWarningModal(funcionario) {
+      this.warningModal = {
+        active: true,
+        funcionario,
       }
-    }
+    },
+    closeWarningModal(){
+      this.warningModal = {
+        active: false,
+        funcionario: '',
+      }
+      this.getAll();
+    },
   },
 };
 </script>
@@ -175,10 +176,6 @@ export default {
 <style>
 #floating-button {
   background-color: #92c83e;
-}
-
-#search {
-  
 }
 
 .v-datatable__actions {

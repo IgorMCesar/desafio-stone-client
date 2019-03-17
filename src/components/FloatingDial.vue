@@ -65,7 +65,10 @@
 <style>
   #git-icon{
     font-size: 58px;
-    left: -1px;
-    top: -29px;
+    bottom: 15px;
+    right: 15px;
+    position: fixed;
+    top: initial !important;
+    left: initial !important;
   }
 </style>
