@@ -41,6 +41,7 @@
         :headers="headers"
         :items="funcionarios"
         :search="search"
+        no-data-text="Nenhum funcionario adicionado!"
       >
         <template v-slot:items="props">
           <td>{{ props.item.nome }}</td>

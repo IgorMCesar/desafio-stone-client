@@ -71,14 +71,14 @@
           flat
           @click="close()"
         >
-          Close
+          Fechar
         </v-btn>
         <v-btn
           color="blue darken-1"
           flat
           @click="addProfissional"
         >
-          Save
+          Criar
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -104,6 +104,7 @@ export default {
       verified: false,
       nomeRules: [
         v => !!v || 'Nome é necessário',
+        v => this.regNome(v) || 'Nome só pode possuir letras',
         v => (v && v.length <= 30) || 'Nome pode ter no máximo 30 caracteres',
         v => (v && v.length >= 2) || 'Nome deve ter no mínimo 2 caracteres'
       ],
@@ -143,8 +144,9 @@ export default {
         .then((resp) => {
           this.close();
         })
-        .catch((err) => {
+        .catch((err, resp) => {
           console.log(err);
+          console.log(resp);
         })
       }
       
@@ -160,6 +162,11 @@ export default {
     },
     resetValidation () {
       this.$refs.form.resetValidation();
+    },
+
+    regNome(nome) {
+      var re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+      return re.test(nome);
     }
   },
 };
