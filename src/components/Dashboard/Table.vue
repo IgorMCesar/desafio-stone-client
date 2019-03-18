@@ -173,7 +173,7 @@ export default {
 }
 
 .v-datatable__actions {
-  border-radius: 20px !important;
+  border-radius: 0 0 20px 20px !important;
 }
 #table-card {
   border-radius: 20px !important;

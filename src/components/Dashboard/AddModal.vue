@@ -127,6 +127,7 @@ export default {
       this.reset();
       this.resetValidation();
       this.closeModal();
+      this.verifiedForm = false;
     },
     addProfissional() {
       this.validate();
@@ -160,7 +161,6 @@ export default {
     },
     validate () {
       if (this.$refs.form.validate()) {
-        this.snackbar = true;
         this.verifiedForm = true;
       }
     },
