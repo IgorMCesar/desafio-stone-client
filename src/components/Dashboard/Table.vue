@@ -56,15 +56,8 @@
             {{ props.item.cargo }}
           </td>
           <td class="text-xs-right">
-            <!-- <v-icon
-              small
-              class="mr-2"
-              @click="editItem(props.item)"
-            >
-              edit
-            </v-icon> -->
             <v-icon
-              small
+              id="delete-icon"
               @click="openWarningModal(props.item)"
             >
               delete
@@ -188,4 +181,9 @@ export default {
 .theme--light.v-table {
   border-radius: 20px !important;
 }
+
+#delete-icon:hover {
+  color: #e57373 !important;
+}
+
 </style>

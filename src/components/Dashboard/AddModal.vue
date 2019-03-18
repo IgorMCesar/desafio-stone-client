@@ -138,6 +138,7 @@ export default {
         ,};
         axios.put(`${this.$store.getters.apiUrl}/funcionario/insert`, profissional)
         .then((resp) => {
+          console.log(resp);
           this.$store.dispatch('setSnackbar', {
             active: true,
             message: 'Funcionario adicionado com sucesso!',
